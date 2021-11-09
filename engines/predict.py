@@ -20,7 +20,7 @@ class Predictor:
         self.configs = configs
         logger.info('loading model parameter')
         if self.configs.use_bert and not self.configs.finetune:
-            self.bert_model = TFBertModel.from_pretrained('bert-base-chinese')
+            self.bert_model = TFBertModel.from_pretrained(configs.bert_model_path, from_pt=configs.from_pt)
         self.ner_model = NerModel(configs, vocab_size, num_classes)
         # 实例化Checkpoint，设置恢复对象为新建立的模型
         if configs.finetune:

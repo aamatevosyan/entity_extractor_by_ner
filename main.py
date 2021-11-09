@@ -73,7 +73,7 @@ if __name__ == '__main__':
     elif mode == 'interactive_predict':
         logger.info('mode: predict_one')
         predictor = Predictor(configs, dataManager, logger)
-        predictor.predict_one('warm start')
+        predictor.predict_one('По словам Выгивского, в тот момент, когда произошло возгорание органа в костеле, там находился музыкант, который проводил репетицию, и еще несколько человек, которые там работают.')
         while True:
             logger.info('please input a sentence (enter [exit] to exit.)')
             sentence = input()

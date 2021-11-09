@@ -5,8 +5,12 @@
 # @File : data.py
 # @Software: PyCharm
 import os
+
+import nltk
 import numpy as np
 import tensorflow as tf
+from nltk import WordPunctTokenizer
+
 from engines.utils.io_functions import read_csv
 from tqdm import tqdm
 
@@ -46,7 +50,7 @@ class DataManager:
 
         if configs.use_bert:
             from transformers import BertTokenizer
-            self.tokenizer = BertTokenizer.from_pretrained('bert-base-chinese')
+            self.tokenizer = BertTokenizer.from_pretrained(configs.bert_model_path, from_pt=configs.from_pt)
             self.max_token_number = len(self.tokenizer.get_vocab())
         else:
             self.max_token_number = len(self.token2id)
@@ -300,7 +304,7 @@ class DataManager:
         :param sentence:
         :return:
         """
-        sentence = list(sentence)
+        sentence = WordPunctTokenizer().tokenize(sentence)
         if self.configs.use_bert:
             if len(sentence) <= self.max_sequence_length - 2:
                 x = self.tokenizer.encode(sentence)

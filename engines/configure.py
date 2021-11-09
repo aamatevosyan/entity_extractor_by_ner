@@ -45,6 +45,10 @@ class Configure:
         if the_item in config:
             self.finetune = self.str2bool(config[the_item])
 
+        the_item = 'from_pt'
+        if the_item in config:
+            self.from_pt = self.str2bool(config[the_item])
+
         the_item = 'vocabs_dir'
         if the_item in config:
             self.vocabs_dir = config[the_item]
@@ -132,6 +136,10 @@ class Configure:
         the_item = 'checkpoint_name'
         if the_item in config:
             self.checkpoint_name = config[the_item]
+
+        the_item = 'bert_model_path'
+        if the_item in config:
+            self.bert_model_path = config[the_item]
 
         the_item = 'checkpoints_max_to_keep'
         if the_item in config:

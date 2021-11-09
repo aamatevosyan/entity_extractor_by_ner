@@ -17,7 +17,7 @@ class NerModel(tf.keras.Model, ABC):
         self.use_bert = configs.use_bert
         self.finetune = configs.finetune
         if self.use_bert and self.finetune:
-            self.bert_model = TFBertModel.from_pretrained('bert-base-chinese')
+            self.bert_model = TFBertModel.from_pretrained(configs.bert_model_path, from_pt=configs.from_pt)
         self.use_bilstm = configs.use_bilstm
         self.embedding = tf.keras.layers.Embedding(vocab_size, configs.embedding_dim, mask_zero=True)
         self.hidden_dim = configs.hidden_dim
